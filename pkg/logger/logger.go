@@ -2,6 +2,7 @@
 package logger
 
 import (
+	"encoding/json"
 	"fmt"
 	"gohub/pkg/app"
 	"os"
@@ -188,4 +189,34 @@ func ErrorString(moduleName, name, msg string) {
 
 func FatalString(moduleName, name, msg string) {
 	Logger.Warn(moduleName, zap.String(name, msg))
+}
+
+// DebugJSON 记录对象类型的debug 日志，使用 json.Marshal 进行编码。调用示例：
+//  	   logger.DebugJSON("Auth", "读取登录用户", auth.CurrentUser())
+func DebugJSON(moduleName, name string, value interface{}) {
+	Logger.Debug(moduleName, zap.String(name, jsonString(value)))
+}
+
+func InfoJSON(moduleName, name string, value interface{}) {
+	Logger.Info(moduleName, zap.String(name, jsonString(value)))
+}
+
+func WarnJSON(moduleName, name string, value interface{}) {
+	Logger.Warn(moduleName, zap.String(name, jsonString(value)))
+}
+
+func ErrorJSON(moduleName, name string, value interface{}) {
+	Logger.Error(moduleName, zap.String(name, jsonString(value)))
+}
+
+func FatalJSON(moduleName, name string, value interface{}) {
+	Logger.Fatal(moduleName, zap.String(name, jsonString(value)))
+}
+
+func jsonString(value interface{}) string {
+	b, err := json.Marshal(value)
+	if err != nil {
+		Logger.Error("Logger", zap.String("JSON marshal error", err.Error()))
+	}
+	return string(b)
 }
