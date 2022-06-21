@@ -54,7 +54,7 @@ func (vc *VerifyCode) SendSMS(phone string) bool {
 }
 
 // checkAnswer 检查用户提交的验证码是否正确，key 可以是手机号或者 Email
-func (vc *VerifyCode) checkAnswer(key string, answer string) bool {
+func (vc *VerifyCode) CheckAnswer(key string, answer string) bool {
 
 	logger.DebugJSON("验证码", "检查验证码", map[string]string{key: answer})
 
