@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"gohub/pkg/logger"
 	"net/smtp"
+
+	emailPKG "github.com/jordan-wright/email"
 )
 
 // SMTP 实现 email.Driver interface
