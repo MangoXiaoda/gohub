@@ -70,7 +70,7 @@ func (jwt *JWT) ParserToken(c *gin.Context) (*JWTCustomClaims, error) {
 
 	// 2、解析出错
 	if err != nil {
-		validationErr, ok := err.(*jwtpkg.ValidationErr)
+		validationErr, ok := err.(*jwtpkg.ValidationError)
 		if ok {
 			if validationErr.Errors == jwtpkg.ValidationErrorMalformed {
 				return nil, ErrTokenMalformed
