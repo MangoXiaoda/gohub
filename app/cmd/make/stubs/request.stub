@@ -8,12 +8,6 @@ type {{StructName}}Request struct {
 }
 
 func {{StructName}}Save(data interface{}, c *gin.Context) map[string][]string {
-    // Name        string `valid:"name" json:"name"`
-    // Description string `valid:"description" json:"description,omitempty"`
-    FIXME()
-}
-
-func {{StructName}}Save(data interface{}, c *gin.Context) map[string][]string {
 
     rules := govalidator.MapData{
         // "name":        []string{"required", "min_cn:2", "max_cn:8", "not_exists:{{TableName}},name"},
