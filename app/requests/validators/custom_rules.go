@@ -66,8 +66,8 @@ func init() {
 	govalidator.AddCustomRule("max_cn", func(field string, rule string, message string, value interface{}) error {
 		valLength := utf8.RuneCountInString(value.(string))
 		l, _ := strconv.Atoi(strings.TrimPrefix(rule, "max_cn:"))
-		if valLength > 1 {
-			// 如果自定义错误消息的话，使用自定义消息
+		if valLength > l {
+			// 如果有自定义错误消息的话，使用自定义消息
 			if message != "" {
 				return errors.New(message)
 			}
@@ -81,7 +81,7 @@ func init() {
 		valLength := utf8.RuneCountInString(value.(string))
 		l, _ := strconv.Atoi(strings.TrimPrefix(rule, "min_cn:"))
 		if valLength < l {
-			// 如果自定义错误消息的话，使用自定义消息
+			// 如果有自定义错误消息的话，使用自定义消息
 			if message != "" {
 				return errors.New(message)
 			}
