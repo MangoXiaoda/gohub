@@ -89,7 +89,7 @@ func (vc *VerifyCode) CheckAnswer(key string, answer string) bool {
 	logger.DebugJSON("验证码", "检查验证码", map[string]string{key: answer})
 
 	// 方便开发，在非生产环境下，具备特殊前缀的手机号和 Email后缀，会直接验证成功
-	if !app.IsProduction() && (strings.HasPrefix(key, config.GetString("verifycode.debug_email_suffix")) || strings.HasPrefix(key, config.GetString("verifycode.debug_phone_prefix"))) {
+	if !app.IsProduction() && (strings.HasSuffix(key, config.GetString("verifycode.debug_email_suffix")) || strings.HasPrefix(key, config.GetString("verifycode.debug_phone_prefix"))) {
 		return true
 	}
 
